@@ -41,8 +41,9 @@ $ python main.py
 
 
 ## 依赖
-* [Python 3.8](https://www.continuum.io/downloads)
-* [PyTorch 1.5](http://pytorch.org/)
+* python 3.7.7
+* pytorch 1.5
+* torchvision 0.6
 
 
 
