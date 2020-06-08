@@ -6,16 +6,16 @@ import torchvision.transforms as transforms
 
 
 # ================================================================== #
-#                         Table of Contents                          #
+#                               目录                                 #
 # ================================================================== #
 
-# 1. Basic autograd example 1               (Line 25 to 39)
-# 2. Basic autograd example 2               (Line 46 to 83)
-# 3. Loading data from numpy                (Line 90 to 97)
-# 4. Input pipline                          (Line 104 to 129)
-# 5. Input pipline for custom dataset       (Line 136 to 156)
-# 6. Pretrained model                       (Line 163 to 176)
-# 7. Save and load model                    (Line 183 to 189) 
+# 1. autograd计算梯度举例1                    (Line 25 to 39)
+# 2. autograd计算梯度举例2                    (Line 46 to 83)
+# 3. 从numpy加载数据                          (Line 90 to 97)
+# 4. 输入pipline                             (Line 104 to 129)
+# 5. 自定义数据的输入pipline                  (Line 136 to 156)
+# 6. 预定义模型                              (Line 163 to 176)
+# 7. 保存和加载模型                          (Line 183 to 189) 
 
 
 # ================================================================== #
