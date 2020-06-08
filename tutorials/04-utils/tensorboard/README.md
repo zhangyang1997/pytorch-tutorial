@@ -1,25 +1,26 @@
 # TensorBoard in PyTorch
 
-In this tutorial, we implement a MNIST classifier using a simple neural network and visualize the training process using [TensorBoard](https://www.tensorflow.org/get_started/summaries_and_tensorboard). In training phase, we plot the loss and accuracy functions through `scalar_summary` and visualize the training images through `image_summary`. In addition, we visualize the weight and gradient values of the parameters of the neural network using `histogram_summary`. PyTorch code for handling these summary functions can be found [here](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04-utils/tensorboard/main.py#L81-L97).
+在本教程中，我们使用简单的神经网络实现一个MNIST分类器，并使用[TensorBoard](https://www.tensorflow.org/get_started/summaries_and_tensorboard)可视化训练过程。在训练阶段，我们通过scalar_summary绘制loss and accuracy函数，通过image_summary将训练图像可视化。此外，我们使用‘histogram_summary’来可视化神经网络参数的权值和梯度值。可以在[此处](https://github.com/yunjey/pytor-tutorial/blob/master/tutorials/04-utils/tensorboard/main.py #L81-L97)。找到处理这些摘要函数的PyTorch代码
 
 ![alt text](gif/tensorboard.gif)
 
-<br>
 
-## Usage 
 
-#### 1. Install the dependencies
+## 用法
+
+#### 1. 安装依赖
 ```bash
 $ pip install -r requirements.txt
 ```
 
-#### 2. Train the model
+#### 2. 训练网络
 ```bash
 $ python main.py
 ```
 
-#### 3. Open the TensorBoard
-To run the TensorBoard, open a new terminal and run the command below. Then, open http://localhost:6006/ on your web browser.
+#### 3. 打开TensorBoard
+要运行TensorBoard，打开一个新的终端并运行下面的命令。然后，在web浏览器上打开http://localhost:6006/。
+
 ```bash
 $ tensorboard --logdir='./logs' --port=6006
 ```
