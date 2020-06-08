@@ -19,28 +19,28 @@ import torchvision.transforms as transforms
 
 
 # ================================================================== #
-#                     1. Basic autograd example 1                    #
+#                     1. autograd计算梯度举例1                        #
 # ================================================================== #
 
-# Create tensors.
+# 创建张量
 x = torch.tensor(1., requires_grad=True)
 w = torch.tensor(2., requires_grad=True)
 b = torch.tensor(3., requires_grad=True)
 
-# Build a computational graph.
+# 创建计算图
 y = w * x + b    # y = 2 * x + 3
 
-# Compute gradients.
+# 计算梯度
 y.backward()
 
-# Print out the gradients.
+# 输出梯度
 print(x.grad)    # x.grad = 2 
 print(w.grad)    # w.grad = 1 
 print(b.grad)    # b.grad = 1 
 
 
 # ================================================================== #
-#                    2. Basic autograd example 2                     #
+#                    2. autograd计算梯度举例2                         #
 # ================================================================== #
 
 # Create tensors of shape (10, 3) and (10, 2).
