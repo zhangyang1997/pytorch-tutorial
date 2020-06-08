@@ -28,7 +28,7 @@ w = torch.tensor(2., requires_grad=True)
 b = torch.tensor(3., requires_grad=True)
 
 # 创建计算图
-y = w * x + b    # y = 2 * x + 3
+y = w * x + b    # y = 2 * x + 3 
 
 # 计算梯度
 y.backward()
