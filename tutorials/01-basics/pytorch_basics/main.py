@@ -43,44 +43,44 @@ print(b.grad)    # b.grad = 1
 #                    2. autograd计算梯度举例2                         #
 # ================================================================== #
 
-# Create tensors of shape (10, 3) and (10, 2).
+# 创建10×3和10×2的两个随机张量
 x = torch.randn(10, 3)
 y = torch.randn(10, 2)
 
-# Build a fully connected layer.
+# 构建两个全连接层
 linear = nn.Linear(3, 2)
 print ('w: ', linear.weight)
 print ('b: ', linear.bias)
 
-# Build loss function and optimizer.
+# 构建损失函数和优化器
 criterion = nn.MSELoss()
 optimizer = torch.optim.SGD(linear.parameters(), lr=0.01)
 
-# Forward pass.
+# 前向传播
 pred = linear(x)
 
-# Compute loss.
+# 计算损失
 loss = criterion(pred, y)
 print('loss: ', loss.item())
 
-# Backward pass.
+# 反向传播
 loss.backward()
 
-# Print out the gradients.
+# 输出梯度
 print ('dL/dw: ', linear.weight.grad) 
 print ('dL/db: ', linear.bias.grad)
 
-# 1-step gradient descent.
+# 1步梯度下降
 optimizer.step()
 
 # You can also perform gradient descent at the low level.
 # linear.weight.data.sub_(0.01 * linear.weight.grad.data)
 # linear.bias.data.sub_(0.01 * linear.bias.grad.data)
 
-# Print out the loss after 1-step gradient descent.
+# 打印出1步梯度下降后的损失
 pred = linear(x)
 loss = criterion(pred, y)
-print('loss after 1 step optimization: ', loss.item())
+print('1步优化后的损失: ', loss.item())
 
 
 # ================================================================== #
