@@ -183,10 +183,10 @@ class CustomDataset(torch.utils.data.Dataset):
 
 
 # 使用预构建的数据加载器
-custom_dataset = CustomDataset()
-train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
-                                           batch_size=64,
-                                           shuffle=True)
+# custom_dataset = CustomDataset()
+# train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
+#                                            batch_size=64,
+#                                            shuffle=True)
 
 
 # ================================================================== #
@@ -207,7 +207,10 @@ resnet.fc = nn.Linear(resnet.fc.in_features, 100)
 images = torch.randn(64, 3, 224, 224)
 outputs = resnet(images)
 print(outputs.size())
-
+'''
+64x3x224x224->64x100
+torch.Size([64, 100])
+'''
 
 # ================================================================== #
 #                      7. 保存并加载模型                              #
