@@ -141,15 +141,15 @@ class CustomDataset(torch.utils.data.Dataset):
         pass
     def __getitem__(self, index):
         # TODO
-        # 1. 从文件中读取一个数据(e.g. using numpy.fromfile, PIL.Image.open).
-        # 2. Preprocess the data (e.g. torchvision.Transform).
-        # 3. Return a data pair (e.g. image and label).
+        # 1. 从文件中读取一个数据(例如numpy.fromfile, PIL.Image.open).
+        # 2. 预处理数据(例如torchvision.Transform).
+        # 3. 返回数据对(例如image and label).
         pass
     def __len__(self):
-        # You should change 0 to the total size of your dataset.
+        # 返回数据集大小
         return 0 
 
-# You can then use the prebuilt data loader. 
+# 使用预构建的数据加载器
 custom_dataset = CustomDataset()
 train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
                                            batch_size=64, 
@@ -157,33 +157,33 @@ train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
 
 
 # ================================================================== #
-#                        6. Pretrained model                         #
+#                        6. 预训练模型                                #
 # ================================================================== #
 
-# Download and load the pretrained ResNet-18.
+# 下载并加载预训练的ResNet-18模型.
 resnet = torchvision.models.resnet18(pretrained=True)
 
-# If you want to finetune only the top layer of the model, set as below.
+# 如果只想微调模型的顶层，请进行如下设置.
 for param in resnet.parameters():
     param.requires_grad = False
 
-# Replace the top layer for finetuning.
-resnet.fc = nn.Linear(resnet.fc.in_features, 100)  # 100 is an example.
+# 更换顶层以进行微调.
+resnet.fc = nn.Linear(resnet.fc.in_features, 100)  
 
-# Forward pass.
+# 前向计算
 images = torch.randn(64, 3, 224, 224)
 outputs = resnet(images)
-print (outputs.size())     # (64, 100)
+print (outputs.size())     
 
 
 # ================================================================== #
-#                      7. Save and load the model                    #
+#                      7. 保存并加载模型                              #
 # ================================================================== #
 
-# Save and load the entire model.
+# 保存并加载整个模型
 torch.save(resnet, 'model.ckpt')
 model = torch.load('model.ckpt')
 
-# Save and load only the model parameters (recommended).
+# 仅保存和加载模型参数（推荐）
 torch.save(resnet.state_dict(), 'params.ckpt')
 resnet.load_state_dict(torch.load('params.ckpt'))
