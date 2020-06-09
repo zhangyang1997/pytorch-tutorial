@@ -1,4 +1,4 @@
-import torch 
+import torch
 import torchvision
 import torch.nn as nn
 import numpy as np
@@ -15,7 +15,7 @@ import torchvision.transforms as transforms
 # 4. 输入pipline                             (Line 104 to 129)
 # 5. 自定义数据的输入pipline                  (Line 136 to 156)
 # 6. 预定义模型                              (Line 163 to 176)
-# 7. 保存和加载模型                          (Line 183 to 189) 
+# 7. 保存和加载模型                          (Line 183 to 189)
 
 
 # ================================================================== #
@@ -28,15 +28,21 @@ w = torch.tensor(2., requires_grad=True)
 b = torch.tensor(3., requires_grad=True)
 
 # 创建计算图
-y = w * x + b    # y = 2 * x + 3 
+y = w * x + b    # y = 2 * x + 3
 
 # 计算梯度
 y.backward()
 
 # 输出梯度
-print(x.grad)    # x.grad = 2 
-print(w.grad)    # w.grad = 1 
-print(b.grad)    # b.grad = 1 
+print(x.grad)
+print(w.grad)
+print(b.grad)
+
+'''
+x.grad = tensor(2.)
+w.grad = tensor(1.)
+b.grad = tensor(1.)
+'''
 
 
 # ================================================================== #
@@ -49,8 +55,16 @@ y = torch.randn(10, 2)
 
 # 构建两个全连接层
 linear = nn.Linear(3, 2)
-print ('w: ', linear.weight)
-print ('b: ', linear.bias)
+print('w: ', linear.weight)
+print('b: ', linear.bias)
+
+'''
+w:  Parameter containing:
+tensor([[-0.0707,  0.2341,  0.4827],
+        [-0.5092, -0.1537,  0.2582]], requires_grad=True)
+b:  Parameter containing:
+tensor([ 0.5335, -0.2167], requires_grad=True)
+'''
 
 # 构建损失函数和优化器
 criterion = nn.MSELoss()
@@ -63,12 +77,21 @@ pred = linear(x)
 loss = criterion(pred, y)
 print('loss: ', loss.item())
 
+'''
+loss:  1.831163763999939
+'''
+
 # 反向传播
 loss.backward()
 
 # 输出梯度
-print ('dL/dw: ', linear.weight.grad) 
-print ('dL/db: ', linear.bias.grad)
+print('dL/dw: ', linear.weight.grad)
+print('dL/db: ', linear.bias.grad)
+'''
+dL/dw:  tensor([[ 0.5340,  0.4947,  0.1947],
+        [-0.1455,  0.5270,  0.6877]])
+dL/db:  tensor([ 0.5586, -0.8556])
+'''
 
 # 1步梯度下降
 optimizer.step()
@@ -81,6 +104,9 @@ optimizer.step()
 pred = linear(x)
 loss = criterion(pred, y)
 print('1步优化后的损失: ', loss.item())
+'''
+1步优化后的损失:  1.631872534751892
+'''
 
 
 # ================================================================== #
@@ -103,18 +129,22 @@ z = y.numpy()
 
 # 下载并构建CIFAR-10数据集.
 train_dataset = torchvision.datasets.CIFAR10(root='../../data/',
-                                             train=True, 
+                                             train=True,
                                              transform=transforms.ToTensor(),
                                              download=True)
 
-# 获取一对数据(从磁盘读数据.
+# 获取一对数据(从磁盘读数据)
 image, label = train_dataset[0]
-print (image.size())
-print (label)
+print(image.size())
+print(label)
+'''
+torch.Size([3, 32, 32])
+6
+'''
 
 # 数据加载器(提供队列和线程的方法).
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=64, 
+                                           batch_size=64,
                                            shuffle=True)
 
 # 迭代开始，队列和线程开始加载数据
@@ -139,20 +169,23 @@ class CustomDataset(torch.utils.data.Dataset):
         # TODO
         # 1. 初始化文件路径或者文件名列表
         pass
+
     def __getitem__(self, index):
         # TODO
         # 1. 从文件中读取一个数据(例如numpy.fromfile, PIL.Image.open).
         # 2. 预处理数据(例如torchvision.Transform).
         # 3. 返回数据对(例如image and label).
         pass
+
     def __len__(self):
         # 返回数据集大小
-        return 0 
+        return 0
+
 
 # 使用预构建的数据加载器
 custom_dataset = CustomDataset()
 train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
-                                           batch_size=64, 
+                                           batch_size=64,
                                            shuffle=True)
 
 
@@ -168,12 +201,12 @@ for param in resnet.parameters():
     param.requires_grad = False
 
 # 更换顶层以进行微调.
-resnet.fc = nn.Linear(resnet.fc.in_features, 100)  
+resnet.fc = nn.Linear(resnet.fc.in_features, 100)
 
 # 前向计算
 images = torch.randn(64, 3, 224, 224)
 outputs = resnet(images)
-print (outputs.size())     
+print(outputs.size())
 
 
 # ================================================================== #
