@@ -84,64 +84,64 @@ print('1步优化后的损失: ', loss.item())
 
 
 # ================================================================== #
-#                     3. Loading data from numpy                     #
+#                     3. 从numpy加载数据                              #
 # ================================================================== #
 
-# Create a numpy array.
+# 创建一个numpy数组
 x = np.array([[1, 2], [3, 4]])
 
-# Convert the numpy array to a torch tensor.
+# 将numpy数组转换为张量
 y = torch.from_numpy(x)
 
-# Convert the torch tensor to a numpy array.
+# 将张量转换为numpy数组
 z = y.numpy()
 
 
 # ================================================================== #
-#                         4. Input pipeline                           #
+#                         4. 输入pipeline                           #
 # ================================================================== #
 
-# Download and construct CIFAR-10 dataset.
+# 下载并构建CIFAR-10数据集.
 train_dataset = torchvision.datasets.CIFAR10(root='../../data/',
                                              train=True, 
                                              transform=transforms.ToTensor(),
                                              download=True)
 
-# Fetch one data pair (read data from disk).
+# 获取一对数据(从磁盘读数据.
 image, label = train_dataset[0]
 print (image.size())
 print (label)
 
-# Data loader (this provides queues and threads in a very simple way).
+# 数据加载器(提供队列和线程的方法).
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            batch_size=64, 
                                            shuffle=True)
 
-# When iteration starts, queue and thread start to load data from files.
+# 迭代开始，队列和线程开始加载数据
 data_iter = iter(train_loader)
 
-# Mini-batch images and labels.
+# 小批量图像和标签.
 images, labels = data_iter.next()
 
-# Actual usage of the data loader is as below.
+# 数据加载器的实际使用情况
 for images, labels in train_loader:
-    # Training code should be written here.
+    # 训练代码写在此处
     pass
 
 
 # ================================================================== #
-#                5. Input pipeline for custom dataset                 #
+#                5. 自定义数据集的输入pipeline                         #
 # ================================================================== #
 
-# You should build your custom dataset as below.
+# 构建自定义数据集
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self):
         # TODO
-        # 1. Initialize file paths or a list of file names. 
+        # 1. 初始化文件路径或者文件名列表
         pass
     def __getitem__(self, index):
         # TODO
-        # 1. Read one data from file (e.g. using numpy.fromfile, PIL.Image.open).
+        # 1. 从文件中读取一个数据(e.g. using numpy.fromfile, PIL.Image.open).
         # 2. Preprocess the data (e.g. torchvision.Transform).
         # 3. Return a data pair (e.g. image and label).
         pass
