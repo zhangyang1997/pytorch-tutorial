@@ -14,12 +14,12 @@ batch_size = 100
 learning_rate = 0.001
 
 # MNIST数据集
-train_dataset = torchvision.datasets.MNIST(root='../../data/',
+train_dataset = torchvision.datasets.MNIST(root='./data/',
                                            train=True,
                                            transform=transforms.ToTensor(),
                                            download=True)
 
-test_dataset = torchvision.datasets.MNIST(root='../../data/',
+test_dataset = torchvision.datasets.MNIST(root='./data/',
                                           train=False,
                                           transform=transforms.ToTensor())
 
@@ -100,3 +100,11 @@ with torch.no_grad():
 
 # 保存模型checkpoint
 torch.save(model.state_dict(), 'model.ckpt')
+
+'''
+结果
+
+
+
+
+'''

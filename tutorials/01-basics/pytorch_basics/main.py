@@ -128,7 +128,7 @@ z = y.numpy()
 # ================================================================== #
 
 # 下载并构建CIFAR-10数据集.
-train_dataset = torchvision.datasets.CIFAR10(root='../../data/',
+train_dataset = torchvision.datasets.CIFAR10(root='./data/',
                                              train=True,
                                              transform=transforms.ToTensor(),
                                              download=True)
